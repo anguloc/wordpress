@@ -1,0 +1,41 @@
+/*******************************
+	All Responsive Code
+*******************************/
+@media ( max-width:991px ){
+	.navbar button.navbar-toggler {
+		color: #fff;
+	}
+	
+	.main-menu {
+		display: block;
+	}
+	
+	.main-menu li a {
+		display: block;
+		width: 100%;
+		text-align: left;
+		margin-left: 0;
+		padding-left: 0;
+	}
+	
+	.main-menu li {
+		display: block;
+		width: 100%;
+		text-align: left;
+		padding-left: 0;
+		margin-left: 0;
+	}
+	
+	.main-menu {
+		text-align: left;
+		width: 100%;
+		border-top: 1px solid #a295f5;
+		margin-top: 21px !important;
+	}
+}
+
+@media ( max-width:768px ) {
+	.blog-section aside#secondary {
+		margin-top: 75px;
+	}
+}
