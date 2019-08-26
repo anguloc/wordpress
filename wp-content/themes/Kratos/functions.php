@@ -943,7 +943,10 @@ function kratos_photo_thumbnail() {
 
 function kratos_thumbnail_url(){
     global $post;
-    if (has_post_thumbnail($post->ID)) {
+    if (!isset($post)) {
+        return '';
+    }
+    if (isset($post->ID) && has_post_thumbnail($post->ID)) {
         $post_thumbnail_id = get_post_thumbnail_id( $post );
         $img = wp_get_attachment_image_src( $post_thumbnail_id, 'full' );
         $img = $img[0];
