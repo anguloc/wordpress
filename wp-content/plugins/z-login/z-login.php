@@ -40,7 +40,7 @@ add_filter('option_siteurl', function($site_url){
 
 add_filter('site_url', function($site_url){
     if($_SERVER['HTTP_HOST'] == 'w.cn'){
-        return 'http://w.cn';
+        return str_replace('blog.gkfk5.cn', 'w.cn', $site_url);
     }
     return $site_url;
 });
