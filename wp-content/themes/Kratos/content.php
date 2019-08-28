@@ -35,9 +35,9 @@ $listlayout = (empty($listlayout)) ? 'new_layout' : $listlayout; ?>
 </div>
 <?php } if($listlayout == 'new_layout'){ ?>
 <div class="kratos-entry-border-new clearfix">
-	<div class="kratos-entry-thumb-new">
-		<?php kratos_blog_thumbnail_new() ?>
-	</div>
+<!--	<div class="kratos-entry-thumb-new">-->
+<!--		--><?php //kratos_blog_thumbnail_new() ?>
+<!--	</div>-->
 	<div class="kratos-post-inner-new">
 		<header class="kratos-entry-header-new">
 			<a class="label" href="<?php $category = get_the_category();echo get_category_link($category[0] -> term_id) . '">' . $category[0] -> cat_name ; ?><i class="label-arrow"></i></a>
