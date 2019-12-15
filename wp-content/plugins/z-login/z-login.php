@@ -45,6 +45,13 @@ add_filter('site_url', function($site_url){
     return $site_url;
 });
 
+add_filter('the_title', function($title){
+    if(empty($title)){
+        $title = wp_trim_words(get_the_excerpt(), 20);
+    }
+    return $title;
+});
+
 // 彻底关闭自动更新
 add_filter('automatic_updater_disabled', '__return_true');
 // 关闭更新检查定时作业
