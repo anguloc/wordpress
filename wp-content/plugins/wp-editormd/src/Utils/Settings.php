@@ -21,7 +21,7 @@ class Settings {
 	 */
 	protected $text_domain;
 
-	protected $static_domain = '';
+	protected $static_domain = 'cdn.jsdelivr.net';
 
 	private $settings_api;
 
@@ -31,7 +31,7 @@ class Settings {
 		$this->version     = $version;
 
         if (defined("DOMAIN_2")) {
-            $this->static_domain = DOMAIN_2 . '/wp-content/plugins/wp-editormd/static';
+//            $this->static_domain = DOMAIN_2 . '/wp-content/plugins/wp-editormd/static';
         }
 
 		$this->settings_api = new SettingsGo;
