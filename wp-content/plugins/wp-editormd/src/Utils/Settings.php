@@ -21,12 +21,18 @@ class Settings {
 	 */
 	protected $text_domain;
 
+	protected $static_domain = '';
+
 	private $settings_api;
 
 	function __construct( $plugin_name, $version, $text_domain ) {
 		$this->plugin_name = $plugin_name;
 		$this->text_domain = $text_domain;
 		$this->version     = $version;
+
+        if (defined("DOMAIN_2")) {
+            $this->static_domain = DOMAIN_2 . '/wp-content/plugins/wp-editormd/static';
+        }
 
 		$this->settings_api = new SettingsGo;
 
@@ -42,21 +48,23 @@ class Settings {
 		$addres = $option['editor_addres'];
 		$SSL = is_ssl() ? 'https:' : 'http:';
 
+		$domain = $this->static_domain;
+
 		//判断本地选项是否jsdelivr地址，如果是则判断是否最新地址
 		$addresResult = preg_match('/cdn\.jsdelivr\.net/i',$addres);
-		if ( $addresResult && $addres !== $SSL . '//cdn.jsdelivr.net/wp/wp-editormd/tags/' . WP_EDITORMD_VER  ) {
-			$option['editor_addres'] = $SSL . '//cdn.jsdelivr.net/wp/wp-editormd/tags/' . WP_EDITORMD_VER;
+		if ( $addresResult && $addres !== $SSL . '//'.$domain.'/wp/wp-editormd/tags/' . WP_EDITORMD_VER  ) {
+			$option['editor_addres'] = $SSL . '//'.$domain.'/wp/wp-editormd/tags/' . WP_EDITORMD_VER;
 			update_option('editor_style',$option);
 		}
 		//如果空值填入最新CDN地址 - 编辑器静态地址
 		if ( $this->get_option('editor_addres', 'editor_style') === '' ) {
-			$option['editor_addres'] = $SSL . '//cdn.jsdelivr.net/wp/wp-editormd/tags/' . WP_EDITORMD_VER;
+			$option['editor_addres'] = $SSL . '//'.$domain.'/wp/wp-editormd/tags/' . WP_EDITORMD_VER;
 			update_option('editor_style',$option);
         }
 
 		//如果空值填入最新CDN地址 - 思维导图
 		if ( $this->get_option('customize_mindmap', 'editor_mindmap') === '' ) {
-			$option['customize_mindmap'] = $SSL . '//cdn.jsdelivr.net/wp/wp-editormd/tags/' . WP_EDITORMD_VER .'/assets/MindMap/mindMap.min.js';
+			$option['customize_mindmap'] = $SSL . '//'.$domain.'/wp/wp-editormd/tags/' . WP_EDITORMD_VER .'/assets/MindMap/mindMap.min.js';
 			update_option('editor_mindmap',$option);
 		}
 
@@ -389,7 +397,7 @@ class Settings {
 					'label'   => __( 'Editor.md Static Resource Addres', $this->text_domain ),
 					'desc'    => __( 'Please make sure the resources are up to date.<br/>' , $this->text_domain ) . __('Please upload the resource (the unzipped folder name is "assets") to your server or cdn. If your resource address is: "http(s)://example.com/myfile/assets", you should fill in: "http(s)://example.com/myfile ". <br/>',$this->text_domain) . upgradeEditormdFile(),
 					'type'    => 'text',
-					'default' => '//cdn.jsdelivr.net/wp/wp-editormd/tags/' . WP_EDITORMD_VER
+					'default' => '//'.$this->static_domain.'/wp/wp-editormd/tags/' . WP_EDITORMD_VER
 				),
 			),
 			'syntax_highlighting' => array(
@@ -508,7 +516,7 @@ class Settings {
 					'name'    => 'customize_mindmap',
 					'label'   => __( 'Customize MindMap Library', $this->text_domain ),
 					'type'    => 'text',
-                    'default' => '//cdn.jsdelivr.net/wp/wp-editormd/tags/' . WP_EDITORMD_VER .'/assets/MindMap/mindMap.min.js'
+                    'default' => '//'.$this->static_domain.'/wp/wp-editormd/tags/' . WP_EDITORMD_VER .'/assets/MindMap/mindMap.min.js'
 				),
             ),
 			'editor_advanced'     => array(

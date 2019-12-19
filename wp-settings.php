@@ -28,6 +28,10 @@ require( ABSPATH . WPINC . '/error-protection.php' );
 require( ABSPATH . WPINC . '/default-constants.php' );
 require_once( ABSPATH . WPINC . '/plugin.php' );
 
+if (is_file(dirname(__DIR__) . '/common/autoloader.php')) {
+    require_once(dirname(__DIR__) . '/common/autoloader.php');
+}
+
 /*
  * These can't be directly globalized in version.php. When updating,
  * we're including version.php from another installation and don't want
