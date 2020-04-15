@@ -246,6 +246,7 @@
 
     var copyright = function() {
         //console.log("项目托管：https://github.com/Vtrois/Kratos");
+        console.warn("啊啊啊啊啊啊啊啊！不想找工作！！！！不想找工作！！！！不想找工作！！！！")
     }
 
     $(function() {
