@@ -11,6 +11,7 @@
 namespace zLogin;
 
 defined('MY_DOMAIN') || define('MY_DOMAIN', 'https://www.gkfk5.cn');
+defined('DOMAIN_2') || define('DOMAIN_2', 'http://blog.gkfk5.cn');
 
 if (isset($_GET['is_my'])) {
     setcookie('z_login_is_my', 1, current_time('timestamp') + 86400);
